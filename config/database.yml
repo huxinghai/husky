@@ -9,13 +9,13 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  database: littlefire_development
+  database: husky_development
 
 test:
   <<: *defaults
-  database: littlefire_test
+  database: husky_test
 
 production:
   <<: *defaults
-  database: littlefire_production
+  database: husky_production
   pool: 10

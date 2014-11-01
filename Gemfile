@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 # specify an exact version
-ruby "2.0.0"
 
 # https://github.com/plataformatec/devise
 gem 'devise'

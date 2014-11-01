@@ -45,7 +45,6 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
->>>>>>> 65b252de37582c5d01cc9aea9eea3da7b8ef145d
     erubis (2.7.0)
     execjs (2.2.2)
     hike (1.2.3)
@@ -93,12 +92,9 @@ GEM
     rake (10.3.2)
     rdoc (4.1.2)
       json (~> 1.4)
-<<<<<<< HEAD
     ref (1.0.5)
-=======
     responders (1.1.1)
       railties (>= 3.2, < 4.2)
->>>>>>> 65b252de37582c5d01cc9aea9eea3da7b8ef145d
     sass (3.2.19)
     sass-rails (4.0.3)
       railties (>= 4.0.0, < 5.0)
