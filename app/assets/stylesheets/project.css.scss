@@ -1,0 +1,42 @@
+.items{
+
+
+  >.item{
+    position: relative;
+    height: 62px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-bottom: 1px solid #ddd;
+    padding-left: 5px;
+
+    .avatar{
+      position: absolute;
+      top: 0px;
+      left: 5px;
+
+      img{
+        width: 48px;
+        height: 48px;
+      }
+    }
+
+    .content{
+      margin-left: 55px;
+      margin-right: 25px;
+
+      .total{
+        position: absolute;
+        top: 12px;
+        right: 5px;
+      }
+
+      .bottom{
+        margin-top: 5px;
+      }
+    }
+  }
+
+  >.item:last-child{
+    border-bottom: none;
+  }
+}

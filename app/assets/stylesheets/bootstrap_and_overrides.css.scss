@@ -5,3 +5,19 @@
   To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
   =require twitter-bootstrap-static/fontawesome
   */
+
+.badge.badge-primary{
+  background-color: #428bca;
+}
+
+.badge.badge-success{
+  background-color: #5cb85c;
+}
+
+.badge.badge-danger{
+  background-color: #d9534f;
+}
+
+.badge.badge-warning{
+  background-color: #f0ad4e;
+}
