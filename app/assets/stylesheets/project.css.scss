@@ -40,3 +40,16 @@
     border-bottom: none;
   }
 }
+
+
+.new_project_wrap{
+  margin-bottom: 10px;
+  form{
+
+    textarea.content{
+      width: 100%;
+      height: 200px;
+    }
+
+  }
+}

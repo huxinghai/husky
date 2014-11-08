@@ -8,6 +8,7 @@ gem 'jquery-rails', '~> 3.1.2'
 gem 'mysql2', '0.3.16'
 gem 'turbolinks', '~> 2.4.0'
 gem 'twitter-bootstrap-rails', '~> 3.2.0'
+gem 'baidu_ueditor_rails', '~> 0.1.0'
 #gem 'font-awesome-sass-rails', '~> 3.0.2'
 #gem 'font-awesome-ie7'
 

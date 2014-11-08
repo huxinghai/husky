@@ -14,4 +14,7 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require turbolinks
+//= require baidu_ueditor
+//= require ueditor_custom_config
+//= require project
 //= require_tree .
