@@ -1,18 +1,32 @@
-<h2>Sign up</h2>
+<div class='row row-offcanvas row-offcanvas-right user_panel'>
+  <div class='col-xs-8'>
+    <div class="panel panel-primary sign_up_wrap">
+      <div class="panel-heading">
+        <h3 class="panel-title">用户登陆</h3>
+      </div>
+      <div class="panel-body">  
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'sign_up'}) do |f| %>
+          <%= devise_error_messages! %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
+          <div><%= f.label :email, "电子邮箱" %><br />
+          <%= f.email_field :email, autofocus: true, tabindex: 1 %></div>
 
-  <div><%= f.label :password %> <% if @validatable %><i>(<%= @minimum_password_length %> characters minimum)</i><% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
+          <div><%= f.label :login, "用户名" %><br />
+          <%= f.text_field :login, tabindex: 2 %></div>
 
-  <div><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+          <div><%= f.label :password, "密码" %> <% if @validatable %><i>(最少<%= @minimum_password_length %>字符)</i><% end %><br />
+            <%= f.password_field :password, autocomplete: "off", tabindex: 3 %></div>
 
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
+          <div><%= f.label :password_confirmation, "确认密码" %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "off",tabindex: 4 %></div>
 
-<%= render "users/shared/links" %>
+          <div><%= f.submit "登陆", class: "btn btn-primary" %></div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class='col-xs-4'>
+    <%= render "users/right_panel" %>
+  </div>
+</div>
