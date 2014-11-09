@@ -1,0 +1,9 @@
+class AddFieldsToUsers < ActiveRecord::Migration
+  def change
+    add_column :users, :name, :string
+    add_column :users, :login, :string
+    add_column :users, :phone, :string
+    add_column :users, :avatar, :string
+    add_column :users, :qq_number, :string
+  end
+end
