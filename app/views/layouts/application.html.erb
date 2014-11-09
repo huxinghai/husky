@@ -14,3 +14,9 @@
   <%= render :partial => "layouts/footer" %>
 </body>
 </html>
+<script type="text/javascript">
+  var class_name = "<%=yield :navbar_active %>"
+  if(class_name != ""){
+    $(".navbar_top .navbar-nav>li."+ class_name).addClass("active").siblings().removeClass("active")
+  }
+</script>

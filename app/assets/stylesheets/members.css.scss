@@ -1,0 +1,55 @@
+.profile_wrap{
+
+
+  .user_recent{
+
+    #completing_projects table, #future_tender table, #my_projects table{
+      margin-top: 20px;
+
+      >tbody>tr:first-child{
+        td{
+          border-top: none;
+        }
+      }
+
+      >tbody td{
+        a{
+          cursor: pointer;
+        }
+      }
+    }
+
+    #future_tender{
+      .schom_icon{
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .user_profile{
+    ul{
+      list-style: none;
+    }
+
+    li{
+      line-height: 25px;
+
+      .title{
+        width: 120px;
+      }
+    }
+
+    .panel-body{
+      position: relative;
+
+      .avatar{
+        position: absolute;
+        top: 1px;
+        right: 1px;
+      }
+    }
+  }
+}
+
+
+

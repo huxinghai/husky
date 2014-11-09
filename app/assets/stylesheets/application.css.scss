@@ -1,7 +1,9 @@
 //= require home
+//= require members
 
 @import "bootstrap_and_overrides";
 @import 'project';
+
 
 body {
   padding-top: 70px;

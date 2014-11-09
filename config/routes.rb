@@ -55,7 +55,10 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-  resources :project do 
+  resources :projects do 
+  end
+
+  resources :members do 
   end
 
   root :to => "home#index"
