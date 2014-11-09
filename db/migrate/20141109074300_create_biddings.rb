@@ -7,7 +7,7 @@ class CreateBiddings < ActiveRecord::Migration
       t.integer :attachment_id
 
       t.float :price
-      t.string :description
+      t.text :description
       t.integer :attachment_id
 
       t.timestamps

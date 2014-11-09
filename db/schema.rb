@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20141109074607) do
     t.integer  "user_id"
     t.integer  "attachment_id"
     t.float    "price",         limit: 24
-    t.string   "description"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 20141109074607) do
   create_table "teams", force: true do |t|
     t.string   "name"
     t.integer  "owner_id"
-    t.string   "description"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
