@@ -7,27 +7,36 @@
       <ul class="nav navbar-nav">
         <li class="dashbord active"><a href="<%=root_path %>">控制面板</a></li>
         <li class="find_project"><a href="<%=projects_path %>">寻找项目</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <% if current_user.present? %>
-          <li class="member dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">我的信息 <span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="<%=member_path("zhangsan") %>">个人资料</a></li>
-              <li><a href="#">我的订阅</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li class="divider"></li>
-              <li><a href="<%=new_project_path %>">我有需求</a></li>
-              <li>
-                <%=link_to '退出登陆', destroy_user_session_path, method: :delete, role: "menuitem", tabindex: "-2"%>
-              </li>
-            </ul>
-          </li>
-        <% else %>
-          <li class='member'>
-            <a href="<%=new_project_path %>">我有需求</a>
-          </li>
-        <% end %>
+        <li class='member'>
+          <a href="<%=new_project_path %>">我有需求</a>
+        </li>    
       </ul>
+
+      <div class='pull-right'>
+        <ul class="nav navbar-nav navbar-right">
+          <% if current_user.present? %>
+            <li class="member dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" >我的信息 
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="<%=member_path("zhangsan") %>">个人资料</a></li>
+                <li><a href="#">我的订阅</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li><a href="<%=new_project_path %>">我有需求</a></li>
+                <li>
+                  <%=link_to '退出登陆', destroy_user_session_path, method: :delete, role: "menuitem", tabindex: "-2"%>
+                </li>
+              </ul>
+            </li>
+          <% else %>
+            <li class='user pull-right'>
+              <%= link_to "登陆", new_session_path(:user) %>
+            </li>  
+          <% end %>
+        </ul>
+      </div>
     </div>
   </div>
 </nav>
