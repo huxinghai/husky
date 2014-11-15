@@ -1,33 +1,5 @@
 <% set_navbar_active :member %>
-<div class='row row-offcanvas row-offcanvas-right profile_wrap'>
-  <div class='col-xs-9'>
-    <%=render "info" %>
-    <%=render "recent_info" %>
-  </div>
-  <div class='col-xs-3'>
-    <div class="panel panel-default">
-      <div class="panel-heading">Panel heading without title</div>
-      <div class="panel-body">
-        Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.
-      </div>
-    </div>
-
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Panel title</h3>
-      </div>
-      <div class="panel-body">
-        Wrap buttons or secondary text in .panel-footer. Note that panel footers do not inherit colors and borders when using contextual variations as they are not meant to be in the foreground.
-      </div>
-    </div>
-
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Panel title</h3>
-      </div>
-      <div class="panel-body">
-        Wrap buttons or secondary text in .panel-footer. Note that panel footers do not inherit colors and borders when using contextual variations as they are not meant to be in the foreground.
-      </div>
-    </div>
-  </div>
-</div>
+<%= render_member_main do  %>
+  <%=render "info" %>
+  <%=render "recent_info" %>
+<% end %>

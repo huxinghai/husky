@@ -4,4 +4,7 @@ class MembersController < ApplicationController
     
   end
 
+  def settings
+  end
+
 end

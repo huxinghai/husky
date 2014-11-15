@@ -55,11 +55,13 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-
   resources :projects do 
   end
 
   resources :members do 
+    member do 
+      get :settings, to: "members#settings"
+    end
   end
 
   root :to => "home#index"

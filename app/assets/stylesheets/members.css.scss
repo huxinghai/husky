@@ -49,6 +49,32 @@
       }
     }
   }
+
+  .user_edit_profile, .user_edit_password{
+    form.edit{
+      input[type=text], input[type=email], input[type=password]{
+        width: 60%;
+      }
+
+      .address{
+        select.province, select.city{
+          width: 20%;
+        }
+      }
+    }
+  }
+
+  .user_edit_profile{
+    form.edit{
+      .github{
+        width: 60%;
+
+        input{
+          width: 100%;
+        }
+      }
+    }
+  }
 }
 
 
