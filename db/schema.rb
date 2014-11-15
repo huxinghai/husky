@@ -13,9 +13,55 @@
 
 ActiveRecord::Schema.define(version: 20141115150653) do
 
+  create_table "attachments", force: true do |t|
+    t.string  "file"
+    t.string  "filename"
+    t.string  "file_type"
+    t.string  "attachable_type"
+    t.integer "attachable_id"
+  end
+
+  create_table "biddings", force: true do |t|
+    t.integer  "project_id"
+    t.integer  "team_id"
+    t.integer  "user_id"
+    t.integer  "attachment_id"
+    t.float    "price",         limit: 24
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "categories", force: true do |t|
+    t.string   "name"
+    t.integer  "parent_id"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "cities", force: true do |t|
     t.string   "name"
     t.integer  "province_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "project_tag_ships", force: true do |t|
+    t.integer "project_id"
+    t.integer "tag_id"
+  end
+
+  create_table "projects", force: true do |t|
+    t.integer  "category_id"
+    t.integer  "owner_id"
+    t.integer  "attachment_id"
+    t.string   "name"
+    t.float    "budget",            limit: 24
+    t.text     "description"
+    t.datetime "dead_line"
+    t.datetime "bidding_dead_line"
+    t.integer  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -24,6 +70,27 @@ ActiveRecord::Schema.define(version: 20141115150653) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "tags", force: true do |t|
+    t.string   "name"
+    t.string   "kind"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "teams", force: true do |t|
+    t.string   "name"
+    t.integer  "owner_id"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_team_ships", force: true do |t|
+    t.integer "user_id"
+    t.integer "team_id"
   end
 
   create_table "users", force: true do |t|
@@ -37,10 +104,16 @@ ActiveRecord::Schema.define(version: 20141115150653) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.integer  "failed_attempts",        default: 0,  null: false
+    t.string   "unlock_token"
+    t.datetime "locked_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "login"
     t.string   "name"
+    t.string   "login"
+    t.string   "phone"
+    t.string   "avatar"
+    t.string   "qq_number"
     t.string   "pages"
     t.integer  "province_id"
     t.integer  "city_id"
@@ -49,5 +122,6 @@ ActiveRecord::Schema.define(version: 20141115150653) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
 end
