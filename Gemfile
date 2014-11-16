@@ -15,6 +15,7 @@ gem 'font-awesome-sass-rails', '~> 3.0.2'
 gem 'devise', '~> 3.4.0'
 gem 'rails-i18n', '~> 4.0.2'
 gem 'kaminari', '~> 0.16.1'
+gem 'simple_form', '~> 3.0.2'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'#, require: 'rspec/core'

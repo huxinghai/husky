@@ -7,5 +7,6 @@ class Project < ActiveRecord::Base
   has_many :biddings
 
   validates :owner, presence: true, allow_blank: false
+  validates :category, presence: true, allow_blank: false
 
 end
