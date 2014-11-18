@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_many :user_team_ships
-  has_many :teams, through: :user_team_ships
+  has_many :teams, foreign_key: :owner_id
   has_many :projects, dependent: :destroy, foreign_key: :owner_id
   has_many :biddings
 
@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   belongs_to :city
   belongs_to :province
 
-  private 
+  private
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)
