@@ -1,0 +1,12 @@
+<div class="teams">
+  <% if @teams.empty? %>
+    <div class="no-teams">你还没有团队，赶紧去创建吧。。。</div>
+  <% else %>
+    <% @teams.each do |team| %>
+      <div class="team">
+        <h5 class="team-name"><%= team.name %></h5>
+        <div class="team-desctription"><%= team.description %></div>
+    <% end %>
+  <% end %>
+</div>
+<a href="<%= new_team_path %>" class="create-team">创建团队</a>

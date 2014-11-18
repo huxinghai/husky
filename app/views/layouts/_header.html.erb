@@ -9,20 +9,21 @@
         <li class="find_project"><a href="<%=projects_path %>">寻找项目</a></li>
         <li class='member'>
           <a href="<%=new_project_path %>">我有需求</a>
-        </li>    
+        </li>
       </ul>
 
       <div class='pull-right'>
         <ul class="nav navbar-nav navbar-right">
           <% if current_user.present? %>
             <li class="member dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" ><%=truncate current_user.login, length: 15 %> 
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" ><%=truncate current_user.login, length: 15 %>
                 <span class="caret"></span>
               </a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="<%=member_path(current_user.login) %>">个人资料</a></li>
                 <li><a href="<%= new_project_path %>">我有需求</a></li>
                 <li><a href="#">我的订阅</a></li>
+                <li><a href="<%= teams_path %>">我的团队</a></li>
                 <li class="divider"></li>
                 <li><a href="<%=settings_member_path(current_user.login) %>">个人设置</a></li>
                 <li>
@@ -33,7 +34,7 @@
           <% else %>
             <li class='user pull-right'>
               <%= link_to "登陆", new_session_path(:user) %>
-            </li>  
+            </li>
           <% end %>
         </ul>
       </div>
