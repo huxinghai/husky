@@ -8,6 +8,8 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     @project.owner = current_user
+    tag_ids = params[:project][:tag_ids].delete_if { |id| id.blank? }
+    tag_ids.each { |id| @project.tags << Tag.find(id) }
 
     if @project.save
       flash[:notice] = '您已经成功发布了项目需求。'
@@ -23,6 +25,6 @@ class ProjectsController < ApplicationController
 
   private
   def project_params
-    params.require(:project).permit(:category_id, :attachment_id, :name, :budget, :description, :dead_line, :bidding_dead_line)
+    params.require(:project).permit(:category_id, :attachment_id, :name, :budget, :description, :dead_line, :bidding_dead_line, :tag_ids)
   end
 end
