@@ -1,4 +1,15 @@
-团队名: <%= @team.name %>
-团队介绍: <%= @team.description %>
-<input type="text" placeholder="请填写需要邀请成员的email" class="invite-email"/>
-<a href="" class="invite-member">邀请新成员</a>
+<p class="bg-success flash-message"></p>
+<div class="team-name">
+  <strong>团队名:</strong>
+  <span><%= @team.name %></span>
+</div>
+<div class="team-description">
+  <strong>团队介绍:</strong>
+  <p><%= @team.description %></p>
+</div>
+<div class="invite-member">
+  <form action="<%= invite_member_team_path(@team) %>" method="post" data-remote="true" id="invitation">
+    <input type="email" require="true" name="invite[email]" placeholder="请填写需要邀请成员的email" class="form-control invite-email"/>
+    <input type="submit" class="invite-member btn-primary btn" value="邀请新成员" />
+  </form>
+</div>

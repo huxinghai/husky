@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   end
 
   resources :teams do
+    member do
+      post :invite_member, to: "teams#invite_member"
+    end
   end
 
   root :to => "home#index"

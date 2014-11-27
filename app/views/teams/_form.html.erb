@@ -1,6 +1,6 @@
 
 <%= simple_form_for [@team], html: {class: "form-horizontal"} do |f| %>
-  <%= f.input :name, label: "团队名" %>
+  <%= f.input :name, label: "团队名", input_html: {:class => "form-control"} %>
   <%= f.input :description, label: "关于团队的详细描述" %>
-  <%= f.button :submit %>
+  <%= f.submit :submit, class: "btn btn-primary" %>
 <% end %>

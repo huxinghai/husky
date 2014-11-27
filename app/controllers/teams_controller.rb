@@ -2,12 +2,18 @@ class TeamsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @teams = current_user.teams
+    @teams = current_user.teams.includes(:users)
   end
 
-  # TODO: will finish in next pr
   def invite_member
-
+    @team = Team.find(params[:id])
+    @user = User.find_by_email(params[:invite][:email])
+    invitation = @team.invitations.build(invite_params)
+    if invitation.save
+      render :text => "邀请成功"
+    else
+      render :text => "邀请失败", :status => 500
+    end
   end
 
   def new
@@ -32,5 +38,10 @@ class TeamsController < ApplicationController
   private
   def team_params
     params.require(:team).permit(:name, :description)
+  end
+
+  def invite_params
+    params.require(:invite).merge(from_user_id: current_user.id, to_user_id: @user.try(:id))
+          .permit(:description, :email, :to_user_id, :from_user_id)
   end
 end

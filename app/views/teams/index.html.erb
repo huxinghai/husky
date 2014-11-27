@@ -1,12 +1,29 @@
-<div class="teams">
-  <% if @teams.empty? %>
-    <div class="no-teams">你还没有团队，赶紧去创建吧。。。</div>
-  <% else %>
-    <% @teams.each do |team| %>
-      <div class="team">
-        <h5 class="team-name"><%= team.name %></h5>
-        <div class="team-desctription"><%= team.description %></div>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <td>团队名</td>
+      <td>团队成员</td>
+      <td>团队描述</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @teams.empty? %>
+      <tr><td colspan="4">你还没有团队，赶紧去创建吧。。。</td></tr>
+    <% else %>
+      <% @teams.each do |team| %>
+        <tr>
+          <td><a href="<%= team_path(team)%>"><%= team.name %></a></td>
+          <td>
+            <span class="badge badge-success"><%= team.owner.login %></span>
+            <% team.users.each do |user| %>
+              <span class="badge badge-default"><%= user.login %></span>
+            <% end %>
+          </td>
+          <td><%= sanitize team.description %>
+        </tr>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
-<a href="<%= new_team_path %>" class="create-team">创建团队</a>
+  </tbody>
+</table>
+<a href="<%= new_team_path %>" class="btn btn-primary">创建团队</a>
