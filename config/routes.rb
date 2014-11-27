@@ -17,5 +17,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :address, only: [] do 
+    collection do 
+      get "/:province_id/cities", to: "address#cities"
+      get "/provinces", to: "address#provinces"
+    end
+  end
+
   root :to => "home#index"
 end

@@ -16,6 +16,7 @@
 //= require turbolinks
 //= require baidu_ueditor
 //= require ueditor_custom_config
+//= require city
 //= require project
 //= require team
 //= require_tree .

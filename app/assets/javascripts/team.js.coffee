@@ -7,4 +7,3 @@ $ ->
       $(".flash-message").html("邀请成功。。。").show()
     .bind 'ajax:error', (xhr, status, error) ->
       $(".flash-message").html("邀请失败").show()
-
