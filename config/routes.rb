@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :projects do
   end
 
-  resources :members do
+  resources :members, only: [:update, :show] do
     member do
       get :settings, to: "members#settings"
     end
