@@ -37,6 +37,18 @@ class MembersController < ApplicationController
     end
   end
 
+  def change_avatar
+    @user = User.find(params[:id])
+    respond_to do |format|
+      @user.avatars = params[:avatar]
+      if @user.save
+        format.json{ head :no_content }
+      else
+        format.json{ render json: {messages: @user.errors.full_messages.join(",") }, status: 403 }
+      end
+    end
+  end
+
   private
   def update_params
     params.require(:user).permit(:name, :email, :city_id, :province_id, :pages, :github_login)

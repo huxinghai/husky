@@ -4,19 +4,19 @@
     <ul>
       <li>
         <label class='title'>ID</label>
-        <span class='content'>zhangsan</span>
+        <span class='content'><%=current_user.login %></span>
       </li>
       <li>
         <label class='title'>姓名</label>
-        <span class='content'>张三</span>
+        <span class='content'><%=current_user.name %></span>
       </li>
       <li>
         <label class='title'>城市</label>
-        <span class='content'>广州</span>
+        <span class='content'><%=current_user.province.try(:name) %> <%=current_user.city.try(:name) %></span>
       </li>
       <li>
         <label class='title'>注册日期</label>
-        <span class='content'>2014-09-01</span>
+        <span class='content'><%=current_user.created_at.strftime("%Y-%m-%d") %></span>
       </li>
       <li>
         <label class='title'>好评</label>
@@ -25,7 +25,7 @@
     </ul>
 
     <div class='avatar'>
-      <img src="<%=asset_path('default_avatar.png') %>" alt='头像' />
+      <img src="<%=current_user.avatars.url %>" alt='头像' data-toggle="tooltip" data-placement="top" title="点击变更头像" />
     </div>
   </div>
 </div>

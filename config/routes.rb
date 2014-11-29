@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     member do
       get :settings, to: "members#settings"
       put :change_password, to: "members#change_password"
+      post :change_avatar, to: "members#change_avatar"
     end
   end
 

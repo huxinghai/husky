@@ -1,8 +1,11 @@
 class User < ActiveRecord::Base
+
   has_many :user_team_ships
   has_many :teams, foreign_key: :owner_id
   has_many :projects, dependent: :destroy, foreign_key: :owner_id
   has_many :biddings
+
+  mount_uploader :avatars, AvatarUploader
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
