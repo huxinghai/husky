@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require turbolinks
+//= require fileuploader
 //= require baidu_ueditor
 //= require ueditor_custom_config
 //= require city

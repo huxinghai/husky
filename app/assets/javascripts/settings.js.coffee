@@ -26,4 +26,18 @@ $ ->
           $msg_error.html(xhr.responseText)
         $msg_success.addClass("hide")
         $msg_error.removeClass("hide");
+
+
+  $(document).on "page:update", () ->
+    $avatar = $(".user_profile .avatar")
+  
+    uploader = new qq.FileUploader(
+      element: $avatar[0],
+      name: "avatar",
+      action: $avatar.attr("data-remote-url"),
+      debug: true,
+      params: {
+        authenticity_token: $("[name=csrf-token]").attr("content")
+      }
+    )
               

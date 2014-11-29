@@ -23,5 +23,7 @@ module Husky
     config.i18n.default_locale = "zh-CN"
 
     config.autoload_paths += %W(#{config.root}/lib)
+
+    config.middleware.use 'Rack::RawUpload'
   end
 end

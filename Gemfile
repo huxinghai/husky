@@ -19,6 +19,7 @@ gem 'simple_form', '~> 3.0.2'
 gem 'carrierwave'
 gem 'rmagick'
 gem 'mini_magick'
+gem 'rack-raw-upload'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'#, require: 'rspec/core'
