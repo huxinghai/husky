@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :members, only: [:update, :show] do
     member do
       get :settings, to: "members#settings"
+      put :change_password, to: "members#change_password"
     end
   end
 
