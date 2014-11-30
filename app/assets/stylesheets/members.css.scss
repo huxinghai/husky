@@ -46,7 +46,37 @@
         position: absolute;
         top: 1px;
         right: 1px;
-        cursor: pointer;
+        // cursor: pointer;
+  
+        img{
+          height: 120px;
+          width: 120px;
+        }
+
+        .backbar{
+          position: absolute;
+          top: 1px;
+          right: 1px;
+          z-index: 1000;
+
+          .qq-upload-list{
+            display: none;
+          }
+        }
+
+        .backbar .qq-upload-button{
+          background: none;
+          border: none;
+          height: 120px;
+          width: 120px;
+        }
+
+        .backbar .qq-uploader{
+          input[type=file]{
+            height: 120px;
+            width: 120px;
+          }
+        }
       }
     }
   }

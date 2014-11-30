@@ -38,8 +38,20 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   process :resize_to_fit => [800, 800]
 
-  version :thumb do
-    process :resize_to_fill => [200,200]
+  version :large do
+    process :resize_to_fill => [165, 165]
+  end
+
+  version :medium do
+    process :resize_to_fill => [75, 75]
+  end
+
+  version :small do
+    process :resize_to_fill => [45, 45]
+  end
+
+  version :tiny do
+    process :resize_to_fill => [20, 20]
   end
 
   def default_url
@@ -50,6 +62,15 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # For images you might use something like this:
   def extension_white_list
     %w(jpg jpeg gif png)
+  end
+
+   def filename
+    @name ||= "#{timestamp}-#{super}" if original_filename.present? and super.present?
+  end
+
+  def timestamp
+    var = :"@#{mounted_as}_timestamp"
+    model.instance_variable_get(var) or model.instance_variable_set(var, Time.now.to_i)
   end
 
   # Override the filename of the uploaded files:

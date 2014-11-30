@@ -24,20 +24,24 @@ $ ->
           $msg_error.html(msg.messages)
         catch e
           $msg_error.html(xhr.responseText)
-        $msg_success.addClass("hide")
+
+        $msg_success.addClass("hide")   
         $msg_error.removeClass("hide");
 
 
-  $(document).on "page:update", () ->
-    $avatar = $(".user_profile .avatar")
-  
-    uploader = new qq.FileUploader(
-      element: $avatar[0],
-      name: "avatar",
-      action: $avatar.attr("data-remote-url"),
-      debug: true,
-      params: {
-        authenticity_token: $("[name=csrf-token]").attr("content")
-      }
-    )
+$(document).on "page:update", () ->
+  $avatar = $(".user_profile .avatar")
+
+  uploader = new qq.FileUploader(
+    element: $(".backbar", $avatar)[0],
+    name: "avatar",
+    action: $avatar.attr("data-remote-url"),
+    debug: true,
+    params: {
+      authenticity_token: $("[name=csrf-token]").attr("content")
+    },
+    uploadButtonText: "",
+    onComplete: (id, filename, result) ->
+      $("img", $avatar).attr("src", result.url)
+  )
               

@@ -40,9 +40,9 @@ class MembersController < ApplicationController
   def change_avatar
     @user = User.find(params[:id])
     respond_to do |format|
-      @user.avatars = params[:avatar]
+      @user.avatars = params[:file]
       if @user.save
-        format.json{ head :no_content }
+        format.json{ render json: {url: @user.avatars.url(:small), success: true } }
       else
         format.json{ render json: {messages: @user.errors.full_messages.join(",") }, status: 403 }
       end
