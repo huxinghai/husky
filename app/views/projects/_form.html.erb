@@ -1,15 +1,30 @@
+<%= form_for @project, html: {class: "form form_new_project"} do |f| %>
+  <%= form_error_messages(@project) %>
+  <div class="form-group">
+    <label>分类</label>
+    <%=f.select :category_id, options_from_collection_for_select(Category.root, :id, :name), {}, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <label>标题</label>
+    <%=f.text_field :name,  class: 'form-control', placeholder: "项目标题" %>
+  </div>
+  <div class="form-group">
+    <label>描述</label>
+    <%=f.text_area :description, class: "description" %>
+  </div>
 
-<%= simple_form_for [@project], html: {class: "form-horizontal form_new_project"} do |f| %>
-  <%= f.input :name, label: "项目名称" %>
-  <%= f.association :category, label: "您需要什么工作", collection: Category.all %>
-  <%= f.association :tags, label: "项目相关技能", collection: Tag.where(kind: "Skill") %>
-  <%= f.input :description, label: "关于项目的详细描述" %>
-  <%= f.input :budget, label: "您计划用多少预算" %>
+  <div class="form-group">
+    <label>预算</label>
+    <div>
+      <%=f.number_field :budget, class: "budget" %>
+    </div>
+  </div>
 
-  <%= f.input :bidding_dead_line, as: :date, label: "竞标结束时间" %>
-  <%= f.input :dead_line, as: :date, label: "项目结束时间" %>
-
-  <%= f.input :attachment_id, label: "附件", as: :file %>
-
-  <%= f.button :submit %>
+  <div class="form-group">
+    <label class="">附件</label>
+    <%= f.file_field :attachment_id %>
+  </div>
+  <div class="form-group">
+    <%= f.button :submit, class: "btn btn-primary" %>
+  </div>
 <% end %>

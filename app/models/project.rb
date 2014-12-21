@@ -1,4 +1,5 @@
 class Project < ActiveRecord::Base
+  paginates_per 30
   belongs_to :owner, class_name: :User, foreign_key: :owner_id
   belongs_to :category
 
@@ -8,5 +9,6 @@ class Project < ActiveRecord::Base
 
   validates :owner, presence: true, allow_blank: false
   validates :category, presence: true, allow_blank: false
+  validates :name, presence: true
 
 end

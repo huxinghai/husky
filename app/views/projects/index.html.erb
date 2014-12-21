@@ -8,125 +8,12 @@
       </div>
 
       <div class='items'>
-        <div class='item'>
-          <div class='avatar'>
-            <img src="https://ruby-china-files.b0.upaiyun.com/user/large_avatar/15448.jpg" />
-          </div>
-          <div class='content'>
-            <div class='title'>Aenean eu leo quam. Pellentesque ornare </div>
-            <div class='bottom'>
-              <span>
-                <i class='fa fa-user'></i>
-                <span>zhangsan</span>
-              </span>
-              <span>
-                最后由 <a href='javascript:void(0)'>李四</a> 于 6 小时前回复
-              </span>              
-            </div>
-            <div class='total'>
-              <span class="badge badge-success">4</span>
-            </div>
-          </div>
-        </div>
-
-        <div class='item'>
-          <div class='avatar'>
-            <img src="https://ruby-china-files.b0.upaiyun.com/user/large_avatar/15448.jpg" />
-          </div>
-          <div class='content'>
-            <div class='title'>footer. Note that panel footers do not  </div>
-            <div class='bottom'>
-              <span>
-                <i class='fa fa-user'></i>
-                <span>zhangsan</span>
-              </span>
-              <span>
-                最后由 <a href='javascript:void(0)'>李四</a> 于 6 小时前回复
-              </span>              
-            </div>
-            <div class='total'>
-              <span class="badge badge">4</span>
-            </div>
-          </div>
-        </div>
-
-        <div class='item'>
-          <div class='avatar'>
-            <img src="https://ruby-china.org/avatar/53a164777934ee2503cd1c1e6df531f0.png?s=96&d=404" />
-          </div>
-          <div class='content'>
-            <div class='title'>meant to be in the foreground. </div>
-            <div class='bottom'>
-              <span>
-                <i class='fa fa-user'></i>
-                <span>wangwu</span>
-              </span>
-              <span>
-                最后由 <a href='javascript:void(0)'>李四</a> 于 6 小时前回复
-              </span>              
-            </div>
-            <div class='total'>
-              <span class="badge">4</span>
-            </div>
-          </div>
-        </div>
-
-        <div class='item'>
-          <div class='avatar'>
-            <img src="https://ruby-china-files.b0.upaiyun.com/user/large_avatar/15448.jpg" />
-          </div>
-          <div class='content'>
-            <div class='title'>er. Note that panel footers do  </div>
-            <div class='bottom'>
-              <span>
-                <i class='fa fa-user'></i>
-                <span>zhangsan</span>
-              </span>
-              <span>
-                最后由 <a href='javascript:void(0)'>李四</a> 于 6 小时前回复
-              </span>              
-            </div>
-            <div class='total'>
-              <span class="badge badge-success">4</span>
-            </div>
-          </div>
-        </div>
-
-        <div class='item'>
-          <div class='avatar'>
-            <img src="https://ruby-china.org/avatar/53a164777934ee2503cd1c1e6df531f0.png?s=96&d=404" />
-          </div>
-          <div class='content'>
-            <div class='title'>nherit colors and borders when using  </div>
-            <div class='bottom'>
-              <span>
-                <i class='fa fa-user'></i>
-                <span>chengxiao</span>
-              </span>
-              <span>
-                最后由 <a href='javascript:void(0)'>李四</a> 于 6 小时前回复
-              </span>              
-            </div>
-            <div class='total'>
-              <span class="badge badge-success">4</span>
-            </div>
-          </div>
-        </div>
+        <%= render partial: "item", collection: @projects, as: :project %>
       </div>
       <!-- Table -->
     </div>
     <div>
-      <nav>
-        <ul class="pagination">
-          <li><a href="#">&laquo;</a></li>
-          <li><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">4</a></li>
-          <li><a href="#">5</a></li>
-          <li><a href="#">&raquo;</a></li>
-        </ul>
-      </nav>
+      <%= paginate @projects %>
     </div>
   </div>
   <div class='col-xs-8 col-sm-3'>
