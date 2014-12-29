@@ -54,5 +54,15 @@
     input.name{
       width: 100%;
     }
+
+    .tab-content{
+      .fixed_price, .hours_price{
+        margin-top: 15px;
+      }
+
+      .fixed_price .input-group{
+        width: 50%;
+      }
+    }
   }
 }

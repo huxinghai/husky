@@ -14,9 +14,41 @@
   </div>
 
   <div class="form-group">
-    <label>预算</label>
-    <div>
-      <%=f.number_field :budget, class: "budget" %>
+    <div role="tabpanel">
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+          <a href="#fixed_price" aria-controls="home" role="tab" data-toggle="tab">固定价格需求</a>
+        </li>
+        <li role="presentation">
+          <a href="#hours_price" aria-controls="profile" role="tab" data-toggle="tab">时薪计算</a>
+        </li>
+      </ul>
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane fixed_price active" id="fixed_price">    
+          <p>
+            <div class="input-group">
+              <div class="input-group-addon">总金额</div>
+              <%=f.text_field :budget, class: "budget form-control", placeholder: "总金额" %>
+              <div class="input-group-addon">RMB</div>
+            </div>
+          </p>        
+        </div>
+        <div role="tabpanel" class="tab-pane hours_price" id="hours_price">
+          <p>
+            <span>完成时间</span>
+            <select name='unit'>
+              <option>日</option>  
+              <option>周</option>  
+              <option>月</option>
+              <option>不固定</option>  
+            </select>
+            <input type='text' class='form-control' name='' />
+          </p>
+        </div>
+      </div>
+
     </div>
   </div>
 
