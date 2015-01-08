@@ -2,14 +2,12 @@
 //= require home
 //= require members
 //= require users
-
 @import "bootstrap_and_overrides";
 @import 'project';
 
-
 body {
   padding-top: 70px;
-  .flash-message{
+  .flash-message {
     padding: 15px;
     display: none;
   }

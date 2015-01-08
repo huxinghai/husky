@@ -1,7 +1,6 @@
-.items{
+.items {
 
-
-  >.item{
+  > .item {
     position: relative;
     height: 62px;
     margin-bottom: 10px;
@@ -9,58 +8,57 @@
     border-bottom: 1px solid #ddd;
     padding-left: 5px;
 
-    .avatar{
+    .avatar {
       position: absolute;
       top: 0px;
       left: 5px;
 
-      img{
+      img {
         width: 48px;
         height: 48px;
       }
     }
 
-    .content{
+    .content {
       margin-left: 55px;
       margin-right: 25px;
 
-      .total{
+      .total {
         position: absolute;
         top: 12px;
         right: 8px;
       }
 
-      .bottom{
+      .bottom {
         margin-top: 5px;
       }
     }
   }
 
-  >.item:last-child{
+  > .item:last-child {
     border-bottom: none;
   }
 }
 
-
-.new_project_wrap{
+.new_project_wrap {
   margin-bottom: 10px;
-  form{
+  form {
 
-    textarea.content{
+    textarea.content {
       width: 100%;
       height: 200px;
     }
 
-    input.name{
+    input.name {
       width: 100%;
     }
 
-    .tab-content{
-      .fixed_price, .hours_price{
+    .tab-content {
+      .fixed_price, .hours_price {
         margin-top: 15px;
       }
 
-      .fixed_price .input-group{
+      .fixed_price .input-group {
         width: 50%;
       }
     }

@@ -1,78 +1,77 @@
-.profile_wrap{
+.profile_wrap {
 
+  .user_recent {
 
-  .user_recent{
-
-    #completing_projects table, #future_tender table, #my_projects table{
+    #completing_projects table, #future_tender table, #my_projects table {
       margin-top: 20px;
 
-      >tbody>tr:first-child{
-        td{
+      > tbody > tr:first-child {
+        td {
           border-top: none;
         }
       }
 
-      >tbody td{
-        a{
+      > tbody td {
+        a {
           cursor: pointer;
         }
       }
     }
 
-    #future_tender{
-      .schom_icon{
+    #future_tender {
+      .schom_icon {
         margin-right: 10px;
       }
     }
   }
 
-  .user_profile{
-    ul{
+  .user_profile {
+    ul {
       list-style: none;
     }
 
-    li{
+    li {
       line-height: 25px;
 
-      .title{
+      .title {
         width: 120px;
       }
     }
 
-    .panel-body{
+    .panel-body {
       position: relative;
 
-      .avatar{
+      .avatar {
         position: absolute;
         top: 1px;
         right: 1px;
         // cursor: pointer;
-  
-        img{
+
+        img {
           height: 120px;
           width: 120px;
         }
 
-        .backbar{
+        .backbar {
           position: absolute;
           top: 1px;
           right: 1px;
           z-index: 1000;
 
-          .qq-upload-list{
+          .qq-upload-list {
             display: none;
           }
         }
 
-        .backbar .qq-upload-button{
+        .backbar .qq-upload-button {
           background: none;
           border: none;
           height: 120px;
           width: 120px;
         }
 
-        .backbar .qq-uploader{
-          input[type=file]{
+        .backbar .qq-uploader {
+          input[type=file] {
             height: 120px;
             width: 120px;
           }
@@ -81,26 +80,26 @@
     }
   }
 
-  .user_edit_profile, .user_edit_password{
-    form.edit{
-      input[type=text], input[type=email], input[type=password]{
+  .user_edit_profile, .user_edit_password {
+    form.edit {
+      input[type=text], input[type=email], input[type=password] {
         width: 60%;
       }
 
-      .address{
-        select.province, select.city{
+      .address {
+        select.province, select.city {
           width: 20%;
         }
       }
     }
   }
 
-  .user_edit_profile{
-    form.edit{
-      .github{
+  .user_edit_profile {
+    form.edit {
+      .github {
         width: 60%;
 
-        input{
+        input {
           width: 100%;
         }
       }
