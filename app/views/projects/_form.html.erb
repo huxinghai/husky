@@ -2,15 +2,15 @@
   <%= form_error_messages(@project) %>
   <div class="form-group">
     <label>分类</label>
-    <%=f.select :category_id, options_from_collection_for_select(Category.root, :id, :name), {}, class: 'form-control' %>
+    <%=f.select :category_id, options_from_collection_for_select(Category.root, :id, :name), {}, class: 'form-control validate[required]' %>
   </div>
   <div class="form-group">
     <label>标题</label>
-    <%=f.text_field :name,  class: 'form-control', placeholder: "项目标题" %>
+    <%=f.text_field :name,  class: 'form-control validate[required]', placeholder: "项目标题" %>
   </div>
   <div class="form-group">
     <label>描述</label>
-    <%=f.text_area :description, class: "description" %>
+    <%=f.text_area :description, class: "description validate[required]" %>
   </div>
 
   <div class="form-group">
@@ -35,17 +35,27 @@
             </div>
           </p>        
         </div>
-        <div role="tabpanel" class="tab-pane hours_price" id="hours_price">
-          <p>
-            <span>完成时间</span>
-            <select name='unit'>
-              <option>日</option>  
-              <option>周</option>  
-              <option>月</option>
-              <option>不固定</option>  
-            </select>
-            <input type='text' class='form-control' name='' />
-          </p>
+        <div role="tabpanel" class="tab-pane hours_price" id="hours_price">  
+          <div class='wrap'>
+            <div class="input-group bar">
+              <div class="input-group-btn">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">1/日 <span class="caret"></span></button>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="javascript:;">时</a></li>
+                  <li><a href="javascript:;">天</a></li>
+                  <li><a href="javascript:;">周</a></li>
+                  <li><a href="javascript:;">月</a></li>
+                  <li class="divider"></li>
+                  <li><a href="javascript:;">不固定</a></li>
+                </ul>
+              </div>
+              <input type='text' class='form-control' name='' placeholder='时薪' />
+              <span class="input-group-addon">
+                RMB
+              </span>
+            </div>
+            <button class='btn btn-info btn_add'>添加</button>
+          </div>       
         </div>
       </div>
 

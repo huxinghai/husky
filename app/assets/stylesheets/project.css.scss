@@ -58,8 +58,20 @@
         margin-top: 15px;
       }
 
-      .fixed_price .input-group {
+      .fixed_price .input-group, .hours_price .bar {
         width: 50%;
+      }
+
+      .hours_price{
+        .wrap{
+          position: relative;
+
+          .btn_add{
+            position: absolute;
+            top: 0px;
+            left: 53%;
+          }
+        }
       }
     }
   }

@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require lib/jquery.validation
 //= require turbolinks
 //= require fileuploader
 //= require baidu_ueditor
