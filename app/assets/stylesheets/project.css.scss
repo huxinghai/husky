@@ -74,5 +74,33 @@
         }
       }
     }
+
+    .nav-tabs{
+      .chose-icon{
+        position: absolute;
+        top: 4px;
+        right: 6px;
+        display: none;
+        font-size: 9px;
+        color: rgb(222, 155, 229);
+      }
+
+      >li{
+        a{
+          color: rgb(178, 174, 174);
+        }
+      }
+
+      >li.active{
+        a{
+          color: black;
+        }
+
+        .chose-icon{
+          display: block;
+        }
+      }
+    }
+
   }
 }
