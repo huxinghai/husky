@@ -25,3 +25,45 @@
 .badge.badge-info {
   background-color: #5bc0de;
 }
+
+.tooltip{
+  &.tooltip-success{
+    .tooltip-arrow{
+      border-top-color: #5cb85c;
+    }
+    .tooltip-inner{
+      background-color: #5cb85c;
+    }
+  }
+
+  &.tooltip-danger{
+    .tooltip-arrow{
+      border-top-color: #d9534f;
+    }
+    .tooltip-inner{
+      background-color: #d9534f;
+    }
+  }
+
+  &.tooltip-warning{
+    .tooltip-arrow{
+      border-top-color: #f0ad4e;
+    }
+    .tooltip-inner{
+      background-color: #f0ad4e;
+    }
+  }
+
+  &.tooltip-info{
+    .tooltip-arrow{
+      border-top-color: #5bc0de;
+    }
+    .tooltip-inner{
+      background-color: #5bc0de;
+    }
+  }
+  
+}
+
+
+

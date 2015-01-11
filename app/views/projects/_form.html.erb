@@ -38,25 +38,29 @@
           </p>        
         </div>
         <div role="tabpanel" class="tab-pane hours_price" id="hours_price">  
+          <table class="table table-bordered addItems">
+            <tbody></tbody>
+          </table>
+
           <div class='wrap'>
             <div class="input-group bar">
               <div class="input-group-btn">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">1/日 <span class="caret"></span></button>
-                <ul class="dropdown-menu" role="menu">
-                  <li><a href="javascript:;">时</a></li>
-                  <li><a href="javascript:;">天</a></li>
-                  <li><a href="javascript:;">周</a></li>
-                  <li><a href="javascript:;">月</a></li>
+                <button type="button" class="btn btn-default dropdown-toggle btn_bar" data-toggle="dropdown" aria-expanded="false" data-selected="h">
+                  1/<span class='content'>时</span><span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu list" role="menu">
+                  <li data-value="h"><a href="javascript:;">时</a></li>
+                  <li data-value="d"><a href="javascript:;">天</a></li>
+                  <li data-value="w"><a href="javascript:;">周</a></li>
+                  <li data-value="m"><a href="javascript:;">月</a></li>
                   <li class="divider"></li>
-                  <li><a href="javascript:;">不固定</a></li>
+                  <li data-value="u"><a href="javascript:;">不固定</a></li>
                 </ul>
               </div>
-              <input type='text' class='form-control' name='' placeholder='时薪' />
-              <span class="input-group-addon">
-                RMB
-              </span>
+              <input type='text' class='form-control validate[required]' placeholder='时薪' />
+              <span class="input-group-addon">RMB</span>
             </div>
-            <button class='btn btn-info btn_add'>添加</button>
+            <button class='btn btn-info btn_add' type='button'>添加</button>
           </div>       
         </div>
       </div>
@@ -72,3 +76,12 @@
     <%= f.button :submit, class: "btn btn-primary" %>
   </div>
 <% end %>
+<script type='template/javascript' class='row_hours_price'>
+<tr>
+  <td></td>
+  <td></td>
+  <td class='operation'>
+    <a href='javascript:;'><i class='fa fa-trash-o'></i></a>
+  </td>
+</tr>
+</script>
