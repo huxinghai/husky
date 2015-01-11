@@ -33,22 +33,40 @@ $(document).on "page:update", ->
       }).tooltip('show');
 
     price = $.trim($input.val())
+    type = $.trim($(".btn_bar", $hp).attr('data-selected'))
+
     return show_error_msg("请输入金额!") if $.isEmptyObject(price)
     return show_error_msg("请输入正确的金额!") unless $.isNumeric(price)
-
-    type = $.trim($(".btn_bar", $hp).attr('data-selected'))
+    return show_error_msg("已经存在这种时薪!") if validExists(type)
+    
     unless $.isEmptyObject(type)
       $(".bar", $hp).removeClass("has-error")
       $input.tooltip("hide")
       renderTemplate(type: type, price: price)
+      $input.val('');
+
+  validExists = (type) ->
+    $(".add_items>tbody td[data-type-value=#{type}]", $hp).length > 0
 
   renderTemplate = (opts) ->
     t = $(template)
     $("td:eq(0)", t).attr("data-type-value", opts.type).html("1/#{listPriceType[opts.type]}")
-    $("td:eq(1)", t).attr("data-price-value", opts.price).html(opts.price)
-    $(".addItems>tbody", $hp).append(t)
+    $("td:eq(1) .price", t).attr("data-price-value", opts.price).html(opts.price)
+    $(".add_items>tbody", $hp).append(t)
+    $(".add_items", $hp).removeClass("hide")
 
-    # $("input:text").validationEngine('showPrompt', 'This a custom msg', 'load');
+  $(".add_items", $hp).on "click", ".btn_trash", (e) ->
+    e.preventDefault()
+    $(this).closest("tr").remove()
+
+    $(".add_items", $hp).addClass("hide") if $(".add_items>tbody tr").length <= 0
 
 
+  # addStorage = (data) ->
+  #   items = getStorage()
+  #   items.push(data)
+  #   $.jStorage.set("project_new_price", items, {TTL: 86400})
+
+  # getStorage = () ->
+  #   $.jStorage.get("project_new_price") || []
 

@@ -80,8 +80,16 @@
         table{
           width: 50%;
 
+          &.hide{
+            display: none;
+          }
+
           td.operation{
             width: 9%;
+          }
+
+          td .price{
+            margin-right: 2px;
           }
         }
       }
