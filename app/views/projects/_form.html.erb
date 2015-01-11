@@ -2,11 +2,11 @@
   <%= form_error_messages(@project) %>
   <div class="form-group">
     <label>分类</label>
-    <%=f.select :category_id, options_from_collection_for_select(Category.root, :id, :name), {}, class: 'form-control validate[required]' %>
+    <%=f.select :category_id, options_from_collection_for_select(Category.root, :id, :name), {}, class: 'form-control validate[required] category_id' %>
   </div>
   <div class="form-group">
     <label>标题</label>
-    <%=f.text_field :name,  class: 'form-control validate[required]', placeholder: "项目标题" %>
+    <%=f.text_field :name,  class: 'form-control title validate[required]', placeholder: "项目标题" %>
   </div>
   <div class="form-group">
     <label>描述</label>
@@ -15,8 +15,9 @@
 
   <div class="form-group">
     <div role="tabpanel">
+      <input type="hidden" name="project[price_type]" value="0" />
       <!-- Nav tabs -->
-      <ul class="nav nav-tabs" role="tablist">
+      <ul class="nav nav-tabs price_type" role="tablist">
         <li role="presentation" class="active">
           <a href="#fixed_price" aria-controls="home" role="tab" data-toggle="tab">固定价格需求</a>
           <span class='fa fa-check chose-icon'></span>
@@ -87,10 +88,13 @@
 <% end %>
 <script type='template/javascript' class='row_hours_price'>
 <tr>
-  <td></td>
+  <td>
+  </td>
   <td><i class='fa fa-yen'></i><span class='price'></span></td>
   <td class='operation'>
     <a href='javascript:;'><i class='fa fa-trash-o btn_trash'></i></a>
+    <input type='hidden' class='type' />
+    <input type='hidden' class='price' />
   </td>
 </tr>
 </script>

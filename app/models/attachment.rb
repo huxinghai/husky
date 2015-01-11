@@ -3,9 +3,13 @@ require 'file_size_validator'
 class Attachment < ActiveRecord::Base
   extend ActsAsStatus
 
+  scope :users, ->(user_id) { self.where(:user_id => user_id) }
+
   mount_uploader :file, FileUploader
 
   acts_as_status :source, [:project]
+
+  validates :user_id, :presence => true
 
   validates :file, :presence => true, 
     :file_size => { 
@@ -13,6 +17,8 @@ class Attachment < ActiveRecord::Base
     } 
 
   before_save :change_file_info
+
+  belongs_to :user
 
   def change_file_info
     self.filename = file.filename

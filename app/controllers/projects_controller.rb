@@ -31,6 +31,7 @@ class ProjectsController < ApplicationController
 
   def upload
     @attachment = Attachment.new_project
+    @attachment.user = current_user
     @attachment.file = params[:file]
     respond_to do |format|
       if @attachment.save
