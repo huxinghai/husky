@@ -85,6 +85,7 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    method_source (0.8.2)
     mime-types (1.25.1)
     mini_magick (4.0.1)
     minitest (5.4.2)
@@ -92,6 +93,10 @@ GEM
     mysql2 (0.3.16)
     orm_adapter (0.5.0)
     polyglot (0.3.5)
+    pry (0.9.12.3)
+      coderay (~> 1.0)
+      method_source (~> 0.8)
+      slop (~> 3.4)
     rack (1.5.2)
     rack-raw-upload (1.1.1)
       multi_json
@@ -144,6 +149,7 @@ GEM
     simple_form (3.0.2)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
+    slop (3.4.6)
     sprockets (2.11.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -189,6 +195,7 @@ DEPENDENCIES
   kaminari (~> 0.16.1)
   mini_magick
   mysql2 (= 0.3.16)
+  pry
   rack-raw-upload
   rails (= 4.1.5)
   rails-i18n (~> 4.0.2)
