@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141129023155) do
+ActiveRecord::Schema.define(version: 20150111091130) do
 
   create_table "attachments", force: true do |t|
     t.string  "file"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20141129023155) do
     t.string  "file_type"
     t.string  "attachable_type"
     t.integer "attachable_id"
+    t.integer "source"
   end
 
   create_table "biddings", force: true do |t|

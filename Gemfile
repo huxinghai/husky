@@ -20,6 +20,7 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'mini_magick'
 gem 'rack-raw-upload'
+gem 'acts_as_status', :git => "git@github.com:xifengzhu/acts_as_status.git"
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'#, require: 'rspec/core'
@@ -30,4 +31,5 @@ group :development, :test do
   gem 'better_errors', '~> 1.1.0'
   gem 'binding_of_caller', '~> 0.7.2'
   gem 'pry'
+  gem 'pry-nav'
 end

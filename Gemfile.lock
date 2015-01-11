@@ -1,3 +1,9 @@
+GIT
+  remote: git@github.com:xifengzhu/acts_as_status.git
+  revision: 7e13322da108bd3fdad921b61bf12dc4b984e6b7
+  specs:
+    acts_as_status (0.0.1)
+
 GEM
   remote: https://ruby.taobao.org/
   specs:
@@ -97,6 +103,8 @@ GEM
       coderay (~> 1.0)
       method_source (~> 0.8)
       slop (~> 3.4)
+    pry-nav (0.2.4)
+      pry (>= 0.9.10, < 0.11.0)
     rack (1.5.2)
     rack-raw-upload (1.1.1)
       multi_json
@@ -181,6 +189,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_status!
   baidu_ueditor_rails (~> 0.1.0)
   better_errors (~> 1.1.0)
   binding_of_caller (~> 0.7.2)
@@ -196,6 +205,7 @@ DEPENDENCIES
   mini_magick
   mysql2 (= 0.3.16)
   pry
+  pry-nav
   rack-raw-upload
   rails (= 4.1.5)
   rails-i18n (~> 4.0.2)

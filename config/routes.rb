@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :projects do
+    collection do 
+      post :upload, to: "projects#upload"
+    end
   end
 
   resources :members, only: [:update, :show] do
@@ -17,6 +20,9 @@ Rails.application.routes.draw do
     member do
       post :invite_member, to: "teams#invite_member"
     end
+  end
+
+  resources :attachments, only: [:destroy] do 
   end
 
   resources :address, only: [] do 

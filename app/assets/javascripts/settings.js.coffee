@@ -31,7 +31,7 @@ $ ->
 $(document).on "page:update", () ->
   $avatar = $(".user_profile .avatar")
 
-  uploader = new qq.FileUploader(
+  new qq.FileUploader(
     element: $(".backbar", $avatar)[0],
     name: "avatar",
     action: $avatar.attr("data-remote-url"),

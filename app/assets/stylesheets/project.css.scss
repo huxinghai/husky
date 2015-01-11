@@ -107,7 +107,7 @@
         right: 6px;
         display: none;
         font-size: 9px;
-        color: rgb(222, 155, 229);
+        color: #E43D96;
       }
 
       >li{
@@ -126,6 +126,47 @@
         }
       }
     }
+
+    .attachments{
+      table.hide{
+        display: none;
+      }
+    }
+
+    .file_upload{
+      position: relative;
+      display: inline-block;
+      overflow: hidden;
+    }
+
+    .file_upload .qq{
+      position: absolute;
+      top: 1px;
+      right: 1px;
+      z-index: 1000;
+
+      .qq-upload-list {
+        display: none;
+      }
+
+      .qq-upload-button {
+        background: none;
+        border: none;
+        height: 32px;
+        width: 93px;
+      }
+
+      .qq-uploader {
+        input[type=file] {
+          height: 32px;
+          width: 93px;
+        }
+      }
+
+    }
+
+        
+        
 
   }
 }

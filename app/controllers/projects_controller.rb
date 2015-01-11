@@ -29,6 +29,18 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
   end
 
+  def upload
+    @attachment = Attachment.new_project
+    @attachment.file = params[:file]
+    respond_to do |format|
+      if @attachment.save
+        format.json{ render json: @attachment }
+      else
+        format.json{ render json: {messages: @attachment.errors.full_messages}, status: 403 }
+      end
+    end
+  end
+
   private
   def project_params
     params.require(:project).permit(:category_id, :attachment_id, :name, :budget, :description, :dead_line, :bidding_dead_line, :tag_ids)

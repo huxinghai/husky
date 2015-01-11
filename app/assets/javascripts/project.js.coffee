@@ -3,6 +3,8 @@ $(document).on "page:update", ->
 
   $hp = $('.hours_price')
   template = $(".row_hours_price").html()
+  $atta_list = $(".attachments table")
+  project_atta_key = "project_attachnents"
 
   $hp.on "click", "ul.dropdown-menu>li", (e) ->
     e.preventDefault()
@@ -18,6 +20,28 @@ $(document).on "page:update", ->
     "m": "月",
     "u": '不固定'
   }
+
+  addAttaRow = (atta) ->
+    $("tbody", $atta_list).append("
+      <tr>
+        <td>
+          <input type='hidden' name='attachments[]' value='#{atta.id}' />
+          #{atta.url}</td>
+        <td><a href='javascript:;'><i class='fa fa-trash-o btn_trash'></i></a></td>
+      </tr>
+    ")
+
+    $atta_list.removeClass("hide")
+
+
+  addStorage = (key, data) ->
+    items = getStorage(key)
+    items.push(data)
+    $.jStorage.set(key, items)
+
+  getStorage = (key) ->
+    $.jStorage.get(key) || []
+
 
   $hp.on "click", ".btn_add", (e) ->
     e.preventDefault()
@@ -60,13 +84,30 @@ $(document).on "page:update", ->
     $(this).closest("tr").remove()
 
     $(".add_items", $hp).addClass("hide") if $(".add_items>tbody tr").length <= 0
+    
+  new qq.FileUploader(
+    element: $(".form_new_project .file_upload .qq")[0],
+    name: "avatar",
+    action: "/projects/upload",
+    debug: true,
+    sizeLimit: 62914560,
+    params: {
+      authenticity_token: $("[name=csrf-token]").attr("content")
+    },
+    uploadButtonText: "",
+    onComplete: (id, filename, result) ->
+      atta = {id: result.id, url: result.file.url}
+      addStorage(project_atta_key, atta)
+      addAttaRow(atta)
+  )
 
+  $atta_list.on "click", ".btn_trash", ->
+    if confirm("是否确认移除?")
+      $(this).closest("tr").remove()
+      $.jStorage.deleteKey(project_atta_key)
 
-  # addStorage = (data) ->
-  #   items = getStorage()
-  #   items.push(data)
-  #   $.jStorage.set("project_new_price", items, {TTL: 86400})
-
-  # getStorage = () ->
-  #   $.jStorage.get("project_new_price") || []
-
+  (->
+    rows = getStorage(project_atta_key)
+    for row in rows
+      addAttaRow(row)
+  )()
