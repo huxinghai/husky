@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150111133221) do
+ActiveRecord::Schema.define(version: 20150124133725) do
 
   create_table "attachments", force: true do |t|
     t.string  "file"
@@ -59,6 +59,21 @@ ActiveRecord::Schema.define(version: 20150111133221) do
     t.datetime "updated_at"
   end
 
+  create_table "project_attachments", force: true do |t|
+    t.integer  "project_id"
+    t.string   "attachment_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "project_budgets", force: true do |t|
+    t.integer  "project_id"
+    t.integer  "kind"
+    t.float    "price",      limit: 24
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "project_tag_ships", force: true do |t|
     t.integer "project_id"
     t.integer "tag_id"
@@ -76,6 +91,7 @@ ActiveRecord::Schema.define(version: 20150111133221) do
     t.integer  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "budget_state"
   end
 
   create_table "provinces", force: true do |t|

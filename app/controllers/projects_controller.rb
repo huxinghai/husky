@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :create]
 
   def index
-    @projects = Project.page(params[:page])
+    @projects = Project.order("created_at desc").page(params[:page])
   end
 
   def new
@@ -10,11 +10,9 @@ class ProjectsController < ApplicationController
   end
 
   def create
+    binding.pry
     @project = Project.new(project_params)
     @project.owner = current_user
-    tag_ids = (params[:project][:tag_ids] || []).delete_if { |id| id.blank? }
-    tag_ids.each { |id| @project.tags << Tag.find(id) }
-
     respond_to do |format|
       if @project.save
         flash[:notice] = '您已经成功发布了项目需求。'
@@ -44,6 +42,6 @@ class ProjectsController < ApplicationController
 
   private
   def project_params
-    params.require(:project).permit(:category_id, :attachment_id, :name, :budget, :description, :dead_line, :bidding_dead_line, :tag_ids)
+    params.require(:project).permit(:category_id, :name, :budget, :budget_state, :description, :price_type, attachment_ids: [], budget_list: ProjectBudget.kind_all)
   end
 end

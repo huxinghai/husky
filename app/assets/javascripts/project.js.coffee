@@ -6,23 +6,11 @@ $(document).on "page:update", ->
   $atta_list = $(".attachments table")
   $form = $(".form_new_project")
 
-  cache_key = {
-    atta: "pa",
-    hprices: "pcs",
-    hprice: "php",
-    price_type: "ppt",
-    money: "pm",
-    category: "pc",
-    title: "pt",
-    content: "pcc"
-  }
-
   $hp.on "click", "ul.dropdown-menu>li", (e) ->
     e.preventDefault()
     li = $(e.currentTarget)
     $(".btn_bar", $hp).attr("data-selected", li.attr("data-value"))
     $(".btn_bar .content", $hp).html(li.find("a").html())
-
 
   listPriceType = {
     "h": "时",
@@ -36,7 +24,7 @@ $(document).on "page:update", ->
     $("tbody", $atta_list).append("
       <tr>
         <td>
-          <input type='hidden' name='attachments[]' value='#{atta.id}' />
+          <input type='hidden' name='project[attachment_ids][]' value='#{atta.id}' />
           #{atta.url}</td>
         <td><a href='javascript:;'><i class='fa fa-trash-o btn_trash'></i></a></td>
       </tr>
@@ -100,8 +88,7 @@ $(document).on "page:update", ->
     $("td:eq(0)", t).attr("data-type-value", opts.type).html("1/#{listPriceType[opts.type]}")
     $("td:eq(1) .price", t).attr("data-price-value", opts.price).html(opts.price)
     $(".add_items>tbody", $hp).append(t)
-    $("input.type", t).attr("name", "project[#{opts.type}]").val(opts.type)
-    $("input.price", t).attr("name", "project[#{opts.price}]").val(opts.price)
+    $("input.price", t).attr("name", "project[budget_list][#{opts.type}]").val(opts.price)
     $(".add_items", $hp).removeClass("hide")
 
   $(".add_items", $hp).on "click", ".btn_trash", (e) ->
@@ -141,8 +128,11 @@ $(document).on "page:update", ->
         success: ->
 
   $ul = $("ul.price_type")
-  $ul.on "click", "li", ->
-    addStorage(cache_key.price_type, $(">li", $ul).index($(this)), false)
+  $ul.on "click", "li", (e) ->
+    e.preventDefault()
+    index = $(">li", $ul).index($(this))
+    addStorage(cache_key.price_type, index, false)
+    $("input.project_price_type", $ul).val($("a", this).attr("aria-controls"))
 
 
   $form.on "keyup", "input.budget", ->

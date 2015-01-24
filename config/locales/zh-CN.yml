@@ -239,4 +239,14 @@ zh-CN:
       <<: *errors
     models:
       project: 项目
+      project_budget: 预算明细
+    attributes:
+      project:
+      project_budget:
+        kind:
+          h: 时
+          d: 天
+          w: 周
+          m: 月
+          u: 不固定
 
