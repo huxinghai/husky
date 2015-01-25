@@ -12,6 +12,7 @@ class Project < ActiveRecord::Base
   has_many :project_attachment
   has_many :attachments, through: :project_attachment
   has_many :tags, through: :project_tag_ships
+  has_many :comments, as: :commentable
   has_many :biddings
 
   validates :owner, presence: true, allow_blank: false

@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :projects do
+    resources :comments, path: "comments/:model/"
+
     collection do 
       post :upload, to: "projects#upload"
     end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150124133725) do
+ActiveRecord::Schema.define(version: 20150125122009) do
 
   create_table "attachments", force: true do |t|
     t.string  "file"
@@ -45,6 +45,18 @@ ActiveRecord::Schema.define(version: 20150124133725) do
   create_table "cities", force: true do |t|
     t.string   "name"
     t.integer  "province_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "comments", force: true do |t|
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.integer  "user_id"
+    t.text     "content"
+    t.boolean  "status"
+    t.integer  "floor"
+    t.text     "content_origin"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

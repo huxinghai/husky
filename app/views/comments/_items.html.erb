@@ -1,0 +1,7 @@
+<% if obj.comments.present? %>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <%=render partial: "comments/#{obj.class.to_s.underscore}", collection: obj.comments, as: :item %>
+  </div>
+</div>
+<% end %>
