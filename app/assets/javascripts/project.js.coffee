@@ -1,16 +1,26 @@
-$(document).on "page:update", ->
+$(document).on "page:change", ->
   new UE.ui.Editor({initialFrameHeight: 320}).render("project_description")
 
-  $hp = $('.hours_price')
+  $hp = $('.wrap_budget')
   template = $(".row_hours_price").html()
   $atta_list = $(".attachments table")
   $form = $(".form_new_project")
+  $category = $(".categories")
+  $children = $(".children select", $category)
+
+  showBudget = (value, text) ->
+    $(".btn_bar", $hp).attr("data-selected", value)
+    $(".btn_bar .content", $hp).html(text)
+    $("input.budget_state", $hp).val(value)
 
   $hp.on "click", "ul.dropdown-menu>li", (e) ->
     e.preventDefault()
     li = $(e.currentTarget)
-    $(".btn_bar", $hp).attr("data-selected", li.attr("data-value"))
-    $(".btn_bar .content", $hp).html(li.find("a").html())
+    showBudget(li.attr("data-value"), li.find("a").html())
+    addStorage(cache_key.compute_type, {
+      value: li.attr("data-value"), 
+      text: li.find("a").html()
+    }, false)
 
   listPriceType = {
     "h": "时",
@@ -32,7 +42,6 @@ $(document).on "page:update", ->
 
     $atta_list.removeClass("hide")
 
-
   addStorage = (key, data, s = true) ->
     if s 
       items = getStorage(key)
@@ -52,52 +61,8 @@ $(document).on "page:update", ->
 
     $.jStorage.set(key, items)
 
-
-  $hp.on "click", ".btn_add", (e) ->
-    e.preventDefault()
-
-    $input = $("input:text", $hp)
-
-    show_error_msg = (msg) ->
-      $(".bar", $hp).addClass("has-error")
-      $input.tooltip({
-        title: msg,
-        trigger: "manual",
-        msg_type: "danger"
-      }).tooltip('show');
-
-    price = $.trim($input.val())
-    type = $.trim($(".btn_bar", $hp).attr('data-selected'))
-
-    return show_error_msg("请输入金额!") if $.isEmptyObject(price)
-    return show_error_msg("请输入正确的金额!") unless $.isNumeric(price)
-    return show_error_msg("已经存在这种时薪!") if validExists(type)
-    
-    unless $.isEmptyObject(type)
-      $(".bar", $hp).removeClass("has-error")
-      $input.tooltip("hide")
-      renderTemplate(type: type, price: price)
-      $input.val('');
-      addStorage(cache_key.hprices, {type: type, price: price})
-
   validExists = (type) ->
     $(".add_items>tbody td[data-type-value=#{type}]", $hp).length > 0
-
-  renderTemplate = (opts) ->
-    t = $(template)
-    $("td:eq(0)", t).attr("data-type-value", opts.type).html("1/#{listPriceType[opts.type]}")
-    $("td:eq(1) .price", t).attr("data-price-value", opts.price).html(opts.price)
-    $(".add_items>tbody", $hp).append(t)
-    $("input.price", t).attr("name", "project[budget_list][#{opts.type}]").val(opts.price)
-    $(".add_items", $hp).removeClass("hide")
-
-  $(".add_items", $hp).on "click", ".btn_trash", (e) ->
-    e.preventDefault()
-    tr = $(this).closest("tr")
-    tr.remove()
-    removeStorage(cache_key.hprices, "type", $("input.type", tr).val())
-
-    $(".add_items", $hp).addClass("hide") if $(".add_items>tbody tr").length <= 0
     
   new qq.FileUploader(
     element: $(".file_upload .qq", $form)[0],
@@ -127,20 +92,41 @@ $(document).on "page:update", ->
         dataType: "json",
         success: ->
 
-  $ul = $("ul.price_type")
-  $ul.on "click", "li", (e) ->
-    e.preventDefault()
-    index = $(">li", $ul).index($(this))
-    addStorage(cache_key.price_type, index, false)
-    $("input.project_price_type", $ul).val($("a", this).attr("aria-controls"))
+  fetchChildren = (parent_id, callback) ->
+    $.ajax
+      url: "/categories/#{parent_id}/childrens"
+      dataType: 'json'
+      success: (data) ->
+        $children.html("")
+        for item in data
+          $children.append("<option value=#{item.id}>#{item.name}</option>") 
 
+        callback() if callback
+        rows = getStorage(cache_key.category)
+        if rows.length > 0
+          category_id = rows[0][parent_id]
+          $children.val(category_id) if category_id
+        $children.parent().show()
+
+  $category.on "change", ">select", (e) ->
+    e.preventDefault()
+    val = $.trim($(this).val())
+    if val then fetchChildren(val) else $children.parent().hide()
 
   $form.on "keyup", "input.budget", ->
     val = $.trim($(this).val())
     addStorage(cache_key.money, val, false) unless $.isEmptyObject(val)
-  .on "change", "select.category_id", ->
+  .on "change", "select.parent_id", (e) ->
+    e.preventDefault()
     val = $.trim($(this).val())
-    addStorage(cache_key.category, val, false) unless $.isEmptyObject(val)
+    addStorage(cache_key.category_parent, val, false) unless $.isEmptyObject(val)
+  .on "change", "select.category_id", (e) ->
+    e.preventDefault()
+    val = $.trim($(this).val())
+    parent_id = $("select.parent_id", $form).val()
+    opts = {} 
+    opts[parent_id] = val
+    addStorage(cache_key.category, opts, false) unless $.isEmptyObject(val)
   .on "keyup", "input.title", ->
     val = $.trim($(this).val())
     addStorage(cache_key.title, val, false) unless $.isEmptyObject(val)
@@ -153,22 +139,20 @@ $(document).on "page:update", ->
     for row in rows
       addAttaRow(row)
 
-    rows = getStorage(cache_key.hprices)
-    for row in rows
-      renderTemplate(row)
-
-    rows = getStorage(cache_key.price_type)
-    $("li:eq(#{rows[0]})>a", $ul).click() if rows.length > 0
+    rows = getStorage(cache_key.compute_type)
+    showBudget(rows[0].value, rows[0].text) if rows.length > 0
 
     rows = getStorage(cache_key.money)
     $("input.budget", $form).val(rows[0]) if rows.length > 0
 
-    rows = getStorage(cache_key.category)
-    $("select.category_id", $form).val(rows[0]) if rows.length > 0
+    rows = getStorage(cache_key.category_parent)    
+    if rows.length > 0
+      $("select.parent_id", $form).val(rows[0])
+      fetchChildren(rows[0])
 
     rows = getStorage(cache_key.title)
     $("input.title", $form).val(rows[0]) if rows.length > 0
 
-    rows = getStorage(cache_key.content)
-    $("input.description", $form).val(rows[0]) if rows.length > 0
+    # rows = getStorage(cache_key.content)
+    # $("input.description", $form).val(rows[0]) if rows.length > 0
   )()

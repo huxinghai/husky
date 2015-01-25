@@ -1,4 +1,4 @@
-$(document).on "page:update", ->
+$(document).on "page:change", ->
   new UE.ui.Editor({initialFrameHeight: 220}).render("team_description")
 
 $ ->

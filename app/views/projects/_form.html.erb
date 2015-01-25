@@ -1,11 +1,14 @@
 <%= form_for @project, html: {class: "form form_new_project"} do |f| %>
   <%= form_error_messages(@project) %>
-  <div class="form-group">
+  <div class="form-group categories">
     <label>分类</label>
-    <%=f.select :category_id, options_from_collection_for_select(Category.root, :id, :name), {}, class: 'form-control validate[required] category_id' %>
+    <%=f.select :parent_id, options_from_collection_for_select(Category.root, :id, :name), {prompt: "请选择分类"}, class: 'form-control parent_id' %>
+    <div class='children'>
+      <%=f.select :category_id, options_from_collection_for_select(Category.root, :id, :name), {}, class: 'form-control category_id' %>
+    </div>
   </div>
   <div class="form-group">
-    <label>标题</label>
+    <label>需求标题</label>
     <%=f.text_field :name,  class: 'form-control title validate[required]', placeholder: "项目标题" %>
   </div>
   <div class="form-group">
@@ -14,59 +17,28 @@
   </div>
 
   <div class="form-group">
-    <div role="tabpanel">
-      <!-- Nav tabs -->
-      <ul class="nav nav-tabs price_type" role="tablist">
-        <input type="hidden" name="project[budget_state]" class='project_price_type' value="total" />
-        <li role="presentation" class="active">
-          <a href="#fixed_price" aria-controls="total" role="tab" data-toggle="tab">固定价格需求</a>
-          <span class='fa fa-check chose-icon'></span>
-        </li>
-        <li role="presentation">
-          <a href="#hours_price" aria-controls="time_ranage" role="tab" data-toggle="tab">时薪计算</a>
-          <span class='fa fa-check chose-icon'></span>
-        </li>
-      </ul>
-      <!-- Tab panes -->
-      <div class="tab-content">
-        <div role="tabpanel" class="tab-pane fixed_price active" id="fixed_price">    
-          <p>
-            <div class="input-group">
-              <div class="input-group-addon">总金额</div>
-              <%=f.text_field :budget, class: "budget form-control", placeholder: "总金额" %>
-              <div class="input-group-addon">RMB</div>
-            </div>
-          </p>        
+    <label>预算</label>
+    <div class='wrap_budget'>
+      <div class="input-group bar">
+        <div class="input-group-btn">
+          <button type="button" class="btn btn-default dropdown-toggle btn_bar" data-toggle="dropdown" aria-expanded="false" data-selected="h">
+            <span class='unit'>1/</span><span class='content'>时</span>
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu list" role="menu">
+            <li data-value="h"><a href="javascript:;">时</a></li>
+            <li data-value="d"><a href="javascript:;">天</a></li>
+            <li data-value="w"><a href="javascript:;">周</a></li>
+            <li data-value="m"><a href="javascript:;">月</a></li>
+            <li class="divider"></li>
+            <li data-value="u"><a href="javascript:;">不固定</a></li>
+          </ul>
         </div>
-        <div role="tabpanel" class="tab-pane hours_price" id="hours_price">  
-          <table class="table table-bordered add_items hide">
-            <tbody></tbody>
-          </table>
-
-          <div class='wrap'>
-            <div class="input-group bar">
-              <div class="input-group-btn">
-                <button type="button" class="btn btn-default dropdown-toggle btn_bar" data-toggle="dropdown" aria-expanded="false" data-selected="h">
-                  1/<span class='content'>时</span><span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu list" role="menu">
-                  <li data-value="h"><a href="javascript:;">时</a></li>
-                  <li data-value="d"><a href="javascript:;">天</a></li>
-                  <li data-value="w"><a href="javascript:;">周</a></li>
-                  <li data-value="m"><a href="javascript:;">月</a></li>
-                  <li class="divider"></li>
-                  <li data-value="u"><a href="javascript:;">不固定</a></li>
-                </ul>
-              </div>
-              <input type='text' class='form-control validate[required]' placeholder='时薪' />
-              <span class="input-group-addon">RMB</span>
-            </div>
-            <button class='btn btn-info btn_add' type='button'>添加</button>
-          </div>       
-        </div>
+        <%=f.text_field :budget, class: "form-control validate[required] budget", placeholder: "预算" %>
+        <%=f.hidden_field :budget_state, class: "budget_state"  %>
+        <span class="input-group-addon">RMB</span>
       </div>
-
-    </div>
+    </div>       
   </div>
 
   <div class="form-group">

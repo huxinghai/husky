@@ -242,11 +242,10 @@ zh-CN:
       project_budget: 预算明细
     attributes:
       project:
-      project_budget:
-        kind:
-          h: 时
-          d: 天
-          w: 周
-          m: 月
+        budget_state:
+          h: 1/时
+          d: 1/天
+          w: 1/周
+          m: 1/月
           u: 不固定
 

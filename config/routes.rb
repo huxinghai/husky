@@ -25,6 +25,12 @@ Rails.application.routes.draw do
   resources :attachments, only: [:destroy] do 
   end
 
+  resources :categories do 
+    member do 
+      get :childrens
+    end
+  end
+
   resources :address, only: [] do 
     collection do 
       get "/:province_id/cities", to: "address#cities"

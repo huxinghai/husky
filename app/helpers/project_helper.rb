@@ -3,10 +3,9 @@ module ProjectHelper
   def cache_keys
     {
       atta: "pa",
-      hprices: "pcs",
-      hprice: "php",
-      price_type: "ppt",
       money: "pm",
+      compute_type: "pmt",
+      category_parent: "pcp",
       category: "pc",
       title: "pt",
       content: "pcc"

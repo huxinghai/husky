@@ -10,14 +10,7 @@
           <%=sanitize @project.description %>
         </p>
         <div>
-          <% if @project.budget_state == :total %>
-            <b>预算:</b> <i class="fa fa-jpy"></i> <%=@project.budget %>
-          <% else %>
-            <div><b>预算</b></div>
-            <% @project.budgets.each do |item| %>
-              <div>1/<%= item.kind_at %>: <i class="fa fa-jpy"></i> <%=item.price %></div>
-            <% end %>
-          <% end %>
+          <b>预算:</b> <%=@project.budget_state_at %> <i class="fa fa-jpy"></i><%=@project.budget %>
         </div>
       </div>
     </div>

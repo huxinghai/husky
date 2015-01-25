@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
   end
 
   def new
-    @project = Project.new(owner: current_user)
+    @project = Project.new(owner: current_user, budget_state: :h)
   end
 
   def create
@@ -42,6 +42,6 @@ class ProjectsController < ApplicationController
 
   private
   def project_params
-    params.require(:project).permit(:category_id, :name, :budget, :budget_state, :description, :price_type, attachment_ids: [], budget_list: ProjectBudget.kind_all)
+    params.require(:project).permit(:category_id, :name, :budget, :budget_state, :description, attachment_ids: [])
   end
 end
