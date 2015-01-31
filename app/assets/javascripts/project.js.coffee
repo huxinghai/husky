@@ -98,8 +98,7 @@ $(document).on "page:change", ->
       dataType: 'json'
       success: (data) ->
         $children.html("")
-        for item in data
-          $children.append("<option value=#{item.id}>#{item.name}</option>") 
+        $children.append("<option value=#{item.id}>#{item.name}</option>") for item in data
 
         callback() if callback
         rows = getStorage(cache_key.category)
@@ -130,7 +129,7 @@ $(document).on "page:change", ->
   .on "keyup", "input.title", ->
     val = $.trim($(this).val())
     addStorage(cache_key.title, val, false) unless $.isEmptyObject(val)
-  .on "keyup", "input.description", ->
+  .on "keyup", "textarea.description", ->
     val = $.trim($(this).val())
     addStorage(cache_key.category, val, false) unless $.isEmptyObject(val)
 
@@ -155,4 +154,40 @@ $(document).on "page:change", ->
 
     # rows = getStorage(cache_key.content)
     # $("input.description", $form).val(rows[0]) if rows.length > 0
+
+    validate = () ->
+      $elem = $("select.parent_id", $form)
+      if $.isEmptyObject($.trim($elem.val()))
+        $elem.tooltip(
+          msg_type: "danger",
+          title: "请选择分类！"
+        )
+        return false
+      $elem = $("select.category_id", $form)
+      if $.isEmptyObject($.trim($elem.val()))
+        $elem.tooltip(
+          msg_type: "danger",
+          title: "请选择分类！"
+        )
+        return false
+      $elem = $("input.title", $form)
+      if $.isEmptyObject($.trim($elem.val()))
+        $elem.tooltip(
+          msg_type: "danger",
+          title: "请输入标题" 
+        )
+        return false
+      $elem = $("textarea.description", $form)
+      if $.isEmptyObject($.trim($elem.val()))
+        $elem.tooltip(
+          msg_type: 'danger',
+          title: "请输入描述" 
+        )
+        return false
+
+      return true
+
+
+    $form.on "submit", (e) ->
+      return false unless validate()
   )()
