@@ -1,6 +1,7 @@
 $(document).on "page:change", ->
-  new UE.ui.Editor({initialFrameHeight: 320}).render("project_description")
-
+  ui = new UE.ui.Editor({initialFrameHeight: 320})
+  ui.render("project_description")
+  
   $hp = $('.wrap_budget')
   template = $(".row_hours_price").html()
   $atta_list = $(".attachments table")
@@ -129,9 +130,11 @@ $(document).on "page:change", ->
   .on "keyup", "input.title", ->
     val = $.trim($(this).val())
     addStorage(cache_key.title, val, false) unless $.isEmptyObject(val)
-  .on "keyup", "textarea.description", ->
-    val = $.trim($(this).val())
-    addStorage(cache_key.category, val, false) unless $.isEmptyObject(val)
+    
+  ui.addListener "selectionchange", ->
+    val = $.trim(ui.getContent())
+    addStorage(cache_key.content, val, false) unless $.isEmptyObject(val)
+
 
   (->
     rows = getStorage(cache_key.atta)
@@ -152,39 +155,48 @@ $(document).on "page:change", ->
     rows = getStorage(cache_key.title)
     $("input.title", $form).val(rows[0]) if rows.length > 0
 
-    # rows = getStorage(cache_key.content)
-    # $("input.description", $form).val(rows[0]) if rows.length > 0
+    rows = getStorage(cache_key.content)
+    ui.ready ->
+      ui.setContent(rows[0]) if rows.length > 0
+
+    show_error_msg = (el, msg) ->
+      el.parent().addClass("has-error")
+      el.tooltip({
+        title: msg,
+        trigger: "manual",
+        msg_type: "danger"
+      }).tooltip('show');
+      return false
+
+    close_error = (el) ->
+      el.parent().removeClass("has-error")
+      el.tooltip('hide')
+
 
     validate = () ->
       $elem = $("select.parent_id", $form)
-      if $.isEmptyObject($.trim($elem.val()))
-        $elem.tooltip(
-          msg_type: "danger",
-          title: "请选择分类！"
-        )
-        return false
+      return show_error_msg($elem, "请选择分类！") if $.isEmptyObject($.trim($elem.val()))
+      close_error($elem)
+        
       $elem = $("select.category_id", $form)
-      if $.isEmptyObject($.trim($elem.val()))
-        $elem.tooltip(
-          msg_type: "danger",
-          title: "请选择分类！"
-        )
-        return false
-      $elem = $("input.title", $form)
-      if $.isEmptyObject($.trim($elem.val()))
-        $elem.tooltip(
-          msg_type: "danger",
-          title: "请输入标题" 
-        )
-        return false
-      $elem = $("textarea.description", $form)
-      if $.isEmptyObject($.trim($elem.val()))
-        $elem.tooltip(
-          msg_type: 'danger',
-          title: "请输入描述" 
-        )
-        return false
+      return show_error_msg($elem, '请选择分类！') if $.isEmptyObject($.trim($elem.val()))
+      close_error($elem)
 
+      $elem = $("input.title", $form)
+      return show_error_msg($elem, '请输入标题！') if $.isEmptyObject($.trim($elem.val()))
+      close_error($elem)
+
+      $elem = $("textarea.description", $form)
+      return show_error_msg($elem.siblings(".description"), '请输入描述！') if $.isEmptyObject($.trim($elem.val()))
+      close_error($elem.siblings(".description"))
+
+      $elem = $("input.budget", $form)
+      if $.isEmptyObject($.trim($elem.val()))
+        return show_error_msg($elem, '请输入预算！') 
+      else
+        return show_error_msg($elem, '请输入正确的预算！') unless $.isNumeric($.trim($elem.val()))
+          
+      close_error($elem)
       return true
 
 

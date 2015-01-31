@@ -7,7 +7,7 @@
     <div class='bottom'>
       <span>
         <i class='fa fa-user'></i>
-        <span><%=project.owner.login %></span>
+        <span><%=link_to project.owner.login, member_path(project.owner.login) %></span>
       </span>
       <span>
         最后由 <a href='javascript:void(0)'>李四</a> 于 6 小时前回复

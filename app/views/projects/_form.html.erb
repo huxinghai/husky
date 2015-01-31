@@ -35,7 +35,7 @@
           </ul>
         </div>
         <%=f.text_field :budget, class: "form-control validate[required] budget", placeholder: "预算" %>
-        <%=f.hidden_field :budget_state, class: "budget_state"  %>
+        <%=f.hidden_field :budget_state, value: @project.budget_state.name, class: "budget_state"  %>
         <span class="input-group-addon">RMB</span>
       </div>
     </div>       
