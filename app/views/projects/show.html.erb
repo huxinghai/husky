@@ -5,19 +5,20 @@
 
 <div class='row row-offcanvas row-offcanvas-right project_info'>
   <div class='col-xs-9 body'>
-    <div class="panel panel-default">
-      <div class="panel-body">
+    <div class="panel panel-default info">
+      <div class="panel-heading" > 
         <h4><%= @project.name %></h4>
-        <hr />
-        <p>
-          <%=sanitize @project.description %>
-        </p>
+      </div>
+      <div class='body'>
         <div>
-          <b>预算:</b> <%=@project.budget_state_at %> <i class="fa fa-jpy"></i><%=@project.budget %>
+          <%=sanitize @project.description %>
+        </div>
+        <div>
+          <b>预算:</b> <%=@project.budget_state_at %> <i class="fa fa-jpy budget_icon"></i><%=@project.budget %>
         </div>
       </div>
     </div>
-    <%= render partial: "comments/items", locals: {:obj => @project} %>
+    <%=render partial: "comments", locals: {project: @project} %>
     <div class="panel panel-default">
       <div class="panel-body">
       <%= form_tag project_comments_path(@project, @project.class.to_s), method: :POST, class: "form-horizontal comment_new", remote: true do  %>

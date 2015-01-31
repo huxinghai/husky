@@ -6,12 +6,12 @@
     margin-bottom: 10px;
     margin-top: 10px;
     border-bottom: 1px solid #ddd;
-    padding-left: 5px;
+    padding-left: 8px;
 
     .avatar {
       position: absolute;
       top: 0px;
-      left: 5px;
+      left: 8px;
 
       img {
         width: 48px;
@@ -142,9 +142,56 @@
 
 
 .project_info{
-  .body{
-    .content{
-      width: 100%;max-width: 100%
+  .info{
+    &>.panel-heading{
+      h4{
+        font-size: 16px;
+        margin: 0px;
+      }
+    }
+
+    .body{
+      padding: 10px 8px;
+
+      .budget_icon{
+        margin: 3px;
+      }
     }
   }
+
+  .body{
+    .content{
+      width: 100%;
+      max-width: 100%
+    }
+  }
+
+  .comments{
+    
+    &>.panel-heading{
+      margin-bottom: 10px;
+
+      h4{
+        color: gray;
+        font-size: 14px;
+        margin: 0px;
+      }
+    }
+
+    .item{
+
+      .title{
+        .fa-user{
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}
+
+
+.no_comments{
+  font-size: 13px;
+  color: gray;
+  text-align: center;
 }

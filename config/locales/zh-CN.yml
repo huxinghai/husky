@@ -240,6 +240,7 @@ zh-CN:
     models:
       project: 项目
       project_budget: 预算明细
+      comment: 回复
     attributes:
       project:
         budget_state:
@@ -248,4 +249,6 @@ zh-CN:
           w: 1/周
           m: 1/月
           u: 不固定
+      comment:
+        content: 内容
 

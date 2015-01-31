@@ -1,6 +1,9 @@
 <% if obj.comments.present? %>
-<div class="panel panel-default">
-  <div class="panel-body">
+<div class="panel panel-default comments">
+  <div class="panel-heading" >  
+    <h4><%= obj.comments.count %> 回复</h4>
+  </div>
+  <div class='items'>
     <%=render partial: "comments/#{obj.class.to_s.underscore}", collection: obj.comments, as: :item %>
   </div>
 </div>

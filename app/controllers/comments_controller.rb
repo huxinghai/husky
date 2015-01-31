@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
       if @comment.save
         format.json{ render json: @comment }
       else
-        format.json{ render json: {messages: @comment.errors.full_messages}, status: 403 }
+        format.json{ render json: {messages: @comment.errors.full_messages.to_a }, status: 403 }
       end
     end
   end

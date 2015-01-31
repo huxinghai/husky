@@ -1,0 +1,5 @@
+<% if project.comments.count > 0 %>
+  <%= render partial: "comments/items", locals: {:obj => project} %>
+<% else %>
+  <h4 class='no_comments'>暂无回复</h4>
+<% end %>
