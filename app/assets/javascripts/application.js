@@ -4,6 +4,7 @@
 //= require bootstrap
 //= require lib/jquery.validation
 //= require lib/jquery.cookie
+//= require lib/timeago
 //= require lib/jstorage
 //= require turbolinks
 //= require fileuploader

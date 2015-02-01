@@ -65,13 +65,3 @@
     </div>
   </div>
 </div>
-<script type='text/javascript'>
-  $(function(){
-    <% if @project.is_just_now? %>
-    var cache_keys = <%=raw cache_keys.to_json %>
-    for(k in cache_keys){
-      $.jStorage.deleteKey(cache_keys[k])
-    }
-    <% end %>
-  })
-</script>

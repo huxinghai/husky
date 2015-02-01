@@ -202,4 +202,6 @@ $(document).on "page:change", ->
 
     $form.on "submit", (e) ->
       return false unless validate()
+      $.jStorage.deleteKey(cache_key[k]) for k of cache_key
+      
   )()

@@ -10,11 +10,20 @@
         <span><%=link_to project.owner.login, member_path(project.owner.login) %></span>
       </span>
       <span>
-        最后由 <a href='javascript:void(0)'>李四</a> 于 6 小时前回复
+        最后由 <a href='javascript:void(0)'>李四</a>
+        <span class='timeago-body'>
+          <% if project.comments.length > 0 %>
+            <abbr class="timeago" title="<%=project.comments.last.created_at %>"></abbr> 回复
+          <% else %>
+            <abbr class="timeago" title="<%=project.created_at %>"></abbr> 发布
+          <% end %>
+        </span>
       </span>              
     </div>
-    <div class='total'>
-      <span class="badge badge-success">4</span>
-    </div>
+    <% if project.comments.count > 0 %>
+      <div class='total'>
+        <span class="badge badge-success"><%=project.comments.count %></span>
+      </div>
+    <% end %>
   </div>
 </div>

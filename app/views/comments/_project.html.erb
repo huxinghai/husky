@@ -3,7 +3,7 @@
     <a href="<%=member_path(item.user.login) %>"><%= image_tag item.user.avatars.small %></a>
   </div>
   <div class='content'>
-    <div class='title'><i class='fa fa-user'></i><%=link_to item.user.login, member_path(item.user.login) %></div>
+    <div class='title'><i class='fa fa-user'></i><%=link_to item.user.login, member_path(item.user.login) %> <abbr class="timeago" title="<%=item.created_at %>"></abbr>回复</div>
     <div class='bottom'>
       <%= item.content %>
     </div>
